@@ -1,0 +1,423 @@
+/* Typing Assistant - Minimal Styling */
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --bg-tertiary: #e5e5e5;
+    --text-primary: #000000;
+    --text-secondary: #666666;
+    --accent: #3b82f6;
+    --error: #ef4444;
+    --success: #10b981;
+    --border: #e5e5e5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.header-controls {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-tab {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.nav-tab:hover {
+    background: var(--bg-secondary);
+}
+
+.nav-tab.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Keyboard Selector */
+.keyboard-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.keyboard-selector label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.keyboard-selector select {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+}
+
+/* Stats Bar */
+.stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Main Content */
+.main-content {
+    margin-bottom: 2rem;
+}
+
+.mode-content {
+    display: none;
+}
+
+.mode-content.active {
+    display: block;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Lesson/Code Selector */
+.lesson-selector,
+.code-selector {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.lesson-selector h2,
+.code-selector h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.lesson-list,
+.problem-list {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.lesson-item,
+.problem-item {
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.lesson-item:hover,
+.problem-item:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+}
+
+.lesson-item.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.lesson-item.locked:hover {
+    transform: none;
+    border-color: var(--border);
+}
+
+.lesson-item h3,
+.problem-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.lesson-item p,
+.problem-item p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.lesson-meta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Language Buttons */
+.language-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.lang-btn {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.lang-btn:hover {
+    border-color: var(--accent);
+}
+
+.lang-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Typing Area */
+.typing-area {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    min-height: 300px;
+}
+
+.target-text,
+.code-display {
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 1.5rem;
+    line-height: 2;
+    letter-spacing: 0.05em;
+    padding: 2rem;
+    background: white;
+    border-radius: 4px;
+    min-height: 200px;
+    margin-bottom: 1.5rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.char {
+    position: relative;
+}
+
+.char.cursor {
+    background: var(--accent);
+    color: white;
+}
+
+.char.correct {
+    color: var(--success);
+}
+
+.char.incorrect {
+    color: var(--error);
+    text-decoration: underline wavy;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+}
+
+/* Keyboard Visualization */
+.keyboard-container {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+#keyboard-display {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
+.key {
+    min-width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.1s;
+    position: relative;
+}
+
+.key.next {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.key.pressed {
+    background: var(--success);
+    color: white;
+}
+
+.key.error {
+    background: var(--error);
+    color: white;
+}
+
+.key.home::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+}
+
+/* Split Keyboard Layout */
+.keyboard.split {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.keyboard-hand {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Stats Content */
+.stats-content {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .stats-bar {
+        gap: 1.5rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .target-text,
+    .code-display {
+        font-size: 1.2rem;
+    }
+}
