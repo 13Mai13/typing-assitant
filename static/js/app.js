@@ -40,6 +40,7 @@ function setupEventListeners() {
     // Lesson mode buttons
     document.getElementById('start-btn')?.addEventListener('click', startLesson);
     document.getElementById('restart-btn')?.addEventListener('click', restartLesson);
+    document.getElementById('back-to-lessons-btn')?.addEventListener('click', backToLessons);
 
     // Code mode language buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -244,6 +245,28 @@ function restartLesson() {
     if (firstChar) {
         keyboard.highlightNextKey(firstChar.textContent);
     }
+}
+
+function backToLessons() {
+    // Stop current engine if running
+    if (currentEngine) {
+        currentEngine.stop();
+        currentEngine = null;
+    }
+
+    // Reset stats
+    stats.reset();
+    stats.stop();
+
+    // Clear keyboard
+    keyboard.clearHighlights();
+
+    // Show lesson selector, hide typing area
+    document.querySelector('.lesson-selector').style.display = 'block';
+    document.getElementById('typing-area').classList.add('hidden');
+
+    // Reset current lesson
+    currentLesson = null;
 }
 
 async function loadCodeProblems(language) {
