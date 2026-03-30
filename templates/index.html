@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Assistant</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Typing Assistant</h1>
+            <div class="header-controls">
+                <nav class="nav-tabs">
+                    <button class="nav-tab active" data-mode="lesson">Lessons</button>
+                    <button class="nav-tab" data-mode="code">Code</button>
+                    <button class="nav-tab" data-mode="stats">Stats</button>
+                </nav>
+                <div class="keyboard-selector">
+                    <label for="keyboard-layout">Layout:</label>
+                    <select id="keyboard-layout">
+                        <option value="macos_standard">macOS</option>
+                        <option value="corne_choc">Corne Choc</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Display -->
+        <div class="stats-bar">
+            <div class="stat">
+                <span class="stat-value" id="wpm-display">0</span>
+                <span class="stat-label">WPM</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="accuracy-display">100</span>
+                <span class="stat-label">Accuracy %</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="time-display">0:00</span>
+                <span class="stat-label">Time</span>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Lesson Mode -->
+            <div id="lesson-mode" class="mode-content active">
+                <div class="lesson-selector">
+                    <h2>Select Lesson</h2>
+                    <div id="lesson-list" class="lesson-list"></div>
+                </div>
+
+                <div id="typing-area" class="typing-area hidden">
+                    <div class="target-text" id="target-text"></div>
+                    <div class="controls">
+                        <button id="start-btn" class="btn btn-primary">Start</button>
+                        <button id="restart-btn" class="btn btn-secondary hidden">Restart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Mode -->
+            <div id="code-mode" class="mode-content hidden">
+                <div class="code-selector">
+                    <h2>Select Language</h2>
+                    <div class="language-buttons">
+                        <button class="lang-btn" data-lang="python">Python</button>
+                        <button class="lang-btn" data-lang="rust">Rust</button>
+                        <button class="lang-btn" data-lang="typescript">TypeScript</button>
+                    </div>
+                    <div id="problem-list" class="problem-list"></div>
+                </div>
+
+                <div id="code-typing-area" class="typing-area hidden">
+                    <div class="code-display" id="code-display"></div>
+                    <div class="controls">
+                        <button id="code-start-btn" class="btn btn-primary">Start</button>
+                        <button id="code-restart-btn" class="btn btn-secondary hidden">Restart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Mode -->
+            <div id="stats-mode" class="mode-content hidden">
+                <h2>Your Progress</h2>
+                <div id="stats-content" class="stats-content">
+                    <p>Statistics coming soon...</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Keyboard Visualization -->
+        <div class="keyboard-container">
+            <div id="keyboard-display"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/typing-engine.js"></script>
+    <script src="/static/js/keyboard.js"></script>
+    <script src="/static/js/stats.js"></script>
+    <script src="/static/js/code-practice.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
