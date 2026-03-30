@@ -1,0 +1,8 @@
+{
+    "problem_id": "python-linked-list",
+    "title": "Reverse Linked List",
+    "language": "python",
+    "difficulty": "easy",
+    "category": "data-structures",
+    "content": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode) -> ListNode:\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev"
+}

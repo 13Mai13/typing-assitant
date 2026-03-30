@@ -1,0 +1,8 @@
+{
+    "problem_id": "rust-hash-map",
+    "title": "Two Sum with HashMap",
+    "language": "rust",
+    "difficulty": "easy",
+    "category": "algorithms",
+    "content": "use std::collections::HashMap;\n\nfn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {\n    let mut map = HashMap::new();\n    for (i, &num) in nums.iter().enumerate() {\n        let complement = target - num;\n        if let Some(&j) = map.get(&complement) {\n            return vec![j as i32, i as i32];\n        }\n        map.insert(num, i);\n    }\n    vec![]\n}"
+}

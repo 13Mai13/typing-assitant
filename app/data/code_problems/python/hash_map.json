@@ -1,0 +1,8 @@
+{
+    "problem_id": "python-hash-map",
+    "title": "Two Sum with Hash Map",
+    "language": "python",
+    "difficulty": "easy",
+    "category": "algorithms",
+    "content": "def two_sum(nums: list[int], target: int) -> list[int]:\n    seen = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in seen:\n            return [seen[complement], i]\n        seen[num] = i\n    return []"
+}

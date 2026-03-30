@@ -1,0 +1,8 @@
+{
+    "problem_id": "ts-hash-map",
+    "title": "Two Sum with Map",
+    "language": "typescript",
+    "difficulty": "easy",
+    "category": "algorithms",
+    "content": "function twoSum(nums: number[], target: number): number[] {\n    const seen = new Map<number, number>();\n    for (let i = 0; i < nums.length; i++) {\n        const complement = target - nums[i];\n        if (seen.has(complement)) {\n            return [seen.get(complement)!, i];\n        }\n        seen.set(nums[i], i);\n    }\n    return [];\n}"
+}
