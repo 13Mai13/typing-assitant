@@ -28,13 +28,14 @@ class KeyboardDisplay {
     }
 
     getMacOSLayout() {
-        // Simplified macOS QWERTY layout
+        // Full macOS QWERTY layout with numbers and special characters
         return {
             name: 'macos_standard',
             type: 'standard',
             rows: [
-                ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-                ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';'],
+                ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
+                ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\'],
+                ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'"],
                 ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/'],
             ],
             homeKeys: ['f', 'j'],
