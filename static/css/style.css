@@ -394,6 +394,107 @@ body {
     gap: 4px;
 }
 
+/* Daily Tracker */
+.daily-tracker {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.daily-tracker h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.tracker-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.activity-heatmap {
+    display: grid;
+    grid-template-columns: repeat(53, 1fr);
+    gap: 3px;
+    margin-bottom: 1rem;
+}
+
+.heatmap-day {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+}
+
+.heatmap-day[data-level="0"] {
+    background: var(--bg-tertiary);
+}
+
+.heatmap-day[data-level="1"] {
+    background: #9be9a8;
+}
+
+.heatmap-day[data-level="2"] {
+    background: #40c463;
+}
+
+.heatmap-day[data-level="3"] {
+    background: #30a14e;
+}
+
+.heatmap-day[data-level="4"] {
+    background: #216e39;
+}
+
+.heatmap-day:hover {
+    transform: scale(1.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.heatmap-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.legend-colors {
+    display: flex;
+    gap: 3px;
+}
+
+.legend-box {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+}
+
+.legend-box[data-level="0"] {
+    background: var(--bg-tertiary);
+}
+
+.legend-box[data-level="1"] {
+    background: #9be9a8;
+}
+
+.legend-box[data-level="2"] {
+    background: #40c463;
+}
+
+.legend-box[data-level="3"] {
+    background: #30a14e;
+}
+
+.legend-box[data-level="4"] {
+    background: #216e39;
+}
+
 /* Stats Content */
 .stats-content {
     padding: 2rem;
