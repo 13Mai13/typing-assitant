@@ -110,8 +110,37 @@
                     </div>
                 </div>
 
-                <div id="stats-content" class="stats-content">
-                    <p style="text-align: center; color: var(--text-secondary);">Detailed statistics coming soon...</p>
+                <!-- Overview Stats -->
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <h4>Total Sessions</h4>
+                        <p class="stat-big" id="total-sessions">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Average WPM</h4>
+                        <p class="stat-big" id="avg-wpm">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Best WPM</h4>
+                        <p class="stat-big" id="best-wpm">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Completed Lessons</h4>
+                        <p class="stat-big" id="completed-lessons">0</p>
+                    </div>
+                </div>
+
+                <!-- Recent Sessions -->
+                <div class="stats-section">
+                    <h3>Recent Sessions</h3>
+                    <div id="session-history" class="session-list"></div>
+                </div>
+
+                <!-- Key Performance -->
+                <div class="stats-section">
+                    <h3>Key Performance</h3>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">Top 10 weakest keys</p>
+                    <div id="key-performance" class="key-list"></div>
                 </div>
             </div>
         </main>

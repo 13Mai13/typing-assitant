@@ -69,9 +69,10 @@ function switchMode(mode) {
         content.classList.toggle('active', content.id === `${mode}-mode`);
     });
 
-    // Generate heatmap when switching to stats mode
+    // Generate heatmap and load stats when switching to stats mode
     if (mode === 'stats') {
         generateActivityHeatmap();
+        loadDetailedStats();
     }
 
     // Reset stats and keyboard

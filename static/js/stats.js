@@ -45,6 +45,125 @@ class StatsDisplay {
 }
 
 /**
+ * Load and display detailed statistics
+ */
+async function loadDetailedStats() {
+    await loadStatsOverview();
+    await loadSessionHistory();
+    await loadKeyPerformance();
+}
+
+async function loadStatsOverview() {
+    try {
+        const response = await fetch('/api/stats/overview');
+        const stats = await response.json();
+
+        document.getElementById('total-sessions').textContent = stats.total_sessions;
+        document.getElementById('avg-wpm').textContent = Math.round(stats.avg_wpm);
+        document.getElementById('best-wpm').textContent = Math.round(stats.best_wpm);
+        document.getElementById('completed-lessons').textContent = stats.completed_lessons;
+    } catch (error) {
+        console.error('Failed to load stats overview:', error);
+    }
+}
+
+async function loadSessionHistory() {
+    try {
+        const response = await fetch('/api/stats/sessions?limit=10');
+        const sessions = await response.json();
+
+        const container = document.getElementById('session-history');
+        container.innerHTML = '';
+
+        if (sessions.length === 0) {
+            container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No sessions yet. Start practicing!</p>';
+            return;
+        }
+
+        sessions.forEach(session => {
+            const item = document.createElement('div');
+            item.className = 'session-item';
+
+            const date = new Date(session.started_at);
+            const dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+            item.innerHTML = `
+                <div>
+                    <strong>${session.mode}</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">${dateStr}</div>
+                </div>
+                <div class="session-info">
+                    <div class="session-metric">
+                        <span class="session-metric-label">WPM</span>
+                        <span class="session-metric-value">${Math.round(session.net_wpm)}</span>
+                    </div>
+                    <div class="session-metric">
+                        <span class="session-metric-label">Accuracy</span>
+                        <span class="session-metric-value">${session.accuracy.toFixed(1)}%</span>
+                    </div>
+                    <div class="session-metric">
+                        <span class="session-metric-label">Duration</span>
+                        <span class="session-metric-value">${Math.round(session.duration_seconds)}s</span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    } catch (error) {
+        console.error('Failed to load session history:', error);
+    }
+}
+
+async function loadKeyPerformance() {
+    try {
+        const response = await fetch('/api/stats/keys');
+        const keys = await response.json();
+
+        const container = document.getElementById('key-performance');
+        container.innerHTML = '';
+
+        if (keys.length === 0) {
+            container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No key data yet. Start practicing!</p>';
+            return;
+        }
+
+        // Sort by confidence (lowest first) and take top 10
+        const weakestKeys = keys
+            .sort((a, b) => a.confidence_score - b.confidence_score)
+            .slice(0, 10);
+
+        weakestKeys.forEach(key => {
+            const item = document.createElement('div');
+            item.className = 'key-item';
+            item.innerHTML = `
+                <div class="key-char-display">${key.key_char}</div>
+                <div class="key-stats">
+                    <div class="key-stat">
+                        <span class="key-stat-label">Accuracy</span>
+                        <span class="key-stat-value">${key.accuracy.toFixed(1)}%</span>
+                    </div>
+                    <div class="key-stat">
+                        <span class="key-stat-label">Attempts</span>
+                        <span class="key-stat-value">${key.total_presses}</span>
+                    </div>
+                    <div class="key-stat">
+                        <span class="key-stat-label">Avg Speed</span>
+                        <span class="key-stat-value">${Math.round(key.avg_press_time)}ms</span>
+                    </div>
+                    <div class="key-stat">
+                        <span class="key-stat-label">Confidence</span>
+                        <span class="key-stat-value">${key.confidence_score.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    } catch (error) {
+        console.error('Failed to load key performance:', error);
+    }
+}
+
+/**
  * Generate GitHub-style activity heatmap
  */
 function generateActivityHeatmap() {

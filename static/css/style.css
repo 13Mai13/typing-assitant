@@ -495,6 +495,131 @@ body {
     background: #216e39;
 }
 
+/* Stats Overview Cards */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-card h4 {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.stat-big {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent);
+    margin: 0;
+}
+
+/* Stats Section */
+.stats-section {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.stats-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.session-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.session-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 3px solid var(--accent);
+}
+
+.session-info {
+    display: flex;
+    gap: 2rem;
+}
+
+.session-metric {
+    display: flex;
+    flex-direction: column;
+}
+
+.session-metric-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.session-metric-value {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.key-list {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.key-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.key-char-display {
+    font-family: 'Monaco', monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 3rem;
+    text-align: center;
+    padding: 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+.key-stats {
+    display: flex;
+    gap: 2rem;
+    flex: 1;
+    margin-left: 2rem;
+}
+
+.key-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.key-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.key-stat-value {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
 /* Stats Content */
 .stats-content {
     padding: 2rem;
