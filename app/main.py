@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from app.config import settings
-from app.routers import lessons
+from app.routers import code_practice, lessons
 
 # Create FastAPI application
 app = FastAPI(
@@ -30,6 +30,7 @@ templates = Jinja2Templates(directory="templates")
 
 # Include routers
 app.include_router(lessons.router, prefix="/api", tags=["lessons"])
+app.include_router(code_practice.router, prefix="/api", tags=["code-practice"])
 
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")

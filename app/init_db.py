@@ -5,10 +5,11 @@ Run this script to create all tables and seed initial data:
 """
 
 import json
+from pathlib import Path
 
 from app.config import settings
 from app.database import Base, engine
-from app.models import Lesson
+from app.models import CodeProblem, Lesson
 
 
 def init_db():
@@ -491,6 +492,52 @@ def seed_lessons():
     db.close()
 
 
+def seed_code_problems():
+    """Seed code practice problems from JSON files."""
+    from app.database import SessionLocal
+
+    db = SessionLocal()
+
+    # Check if problems already exist
+    existing_count = db.query(CodeProblem).count()
+    if existing_count > 0:
+        print(f"✓ Code problems already seeded ({existing_count} problems found)")
+        db.close()
+        return
+
+    print("Seeding code problems...")
+
+    # Load problems from JSON files
+    problems_dir = Path(settings.code_problems_dir)
+    loaded = 0
+
+    for language_dir in problems_dir.iterdir():
+        if not language_dir.is_dir():
+            continue
+
+        for problem_file in language_dir.glob("*.json"):
+            try:
+                with open(problem_file) as f:
+                    problem_data = json.load(f)
+
+                problem = CodeProblem(
+                    problem_id=problem_data["problem_id"],
+                    title=problem_data["title"],
+                    language=problem_data["language"],
+                    difficulty=problem_data.get("difficulty"),
+                    content=problem_data["content"],
+                    category=problem_data.get("category"),
+                )
+                db.add(problem)
+                loaded += 1
+            except Exception as e:
+                print(f"  Warning: Failed to load {problem_file}: {e}")
+
+    db.commit()
+    print(f"✓ Seeded {loaded} code problems")
+    db.close()
+
+
 def main():
     """Main initialization function."""
     print("=" * 50)
@@ -499,6 +546,7 @@ def main():
 
     init_db()
     seed_lessons()
+    seed_code_problems()
 
     print("\n" + "=" * 50)
     print("✓ Database initialization complete!")

@@ -12,9 +12,8 @@ class CodePractice {
     async loadProblems(language) {
         try {
             this.currentLanguage = language;
-            // TODO: Fetch from /api/code/problems?language={language}
-            // For now, return empty array
-            this.problems = [];
+            const response = await fetch(`/api/code/problems?language=${language}`);
+            this.problems = await response.json();
             return this.problems;
         } catch (error) {
             console.error('Failed to load code problems:', error);
@@ -24,8 +23,8 @@ class CodePractice {
 
     async getProblem(problemId) {
         try {
-            // TODO: Fetch from /api/code/problems/{problemId}
-            return null;
+            const response = await fetch(`/api/code/problems/${problemId}`);
+            return await response.json();
         } catch (error) {
             console.error('Failed to load problem:', error);
             return null;
@@ -45,7 +44,7 @@ class CodePractice {
             item.className = 'problem-item';
             item.innerHTML = `
                 <h3>${problem.title}</h3>
-                <p>${problem.difficulty} - ${problem.category}</p>
+                <p><strong>${problem.difficulty}</strong> • ${problem.category}</p>
             `;
             item.addEventListener('click', () => this.selectProblem(problem));
             container.appendChild(item);
