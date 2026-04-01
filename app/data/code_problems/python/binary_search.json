@@ -1,0 +1,8 @@
+{
+    "problem_id": "python-binary-search",
+    "title": "Binary Search",
+    "language": "python",
+    "difficulty": "easy",
+    "category": "algorithms",
+    "content": "def binary_search(arr: list[int], target: int) -> int:\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1"
+}

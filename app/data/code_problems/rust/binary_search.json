@@ -1,0 +1,8 @@
+{
+    "problem_id": "rust-binary-search",
+    "title": "Binary Search",
+    "language": "rust",
+    "difficulty": "easy",
+    "category": "algorithms",
+    "content": "fn binary_search(arr: &[i32], target: i32) -> Option<usize> {\n    let mut left = 0;\n    let mut right = arr.len();\n    while left < right {\n        let mid = left + (right - left) / 2;\n        match arr[mid].cmp(&target) {\n            std::cmp::Ordering::Equal => return Some(mid),\n            std::cmp::Ordering::Less => left = mid + 1,\n            std::cmp::Ordering::Greater => right = mid,\n        }\n    }\n    None\n}"
+}

@@ -1,0 +1,8 @@
+{
+    "problem_id": "rust-vector-ops",
+    "title": "Vector Operations",
+    "language": "rust",
+    "difficulty": "easy",
+    "category": "data-structures",
+    "content": "fn process_vector(mut nums: Vec<i32>) -> Vec<i32> {\n    nums.iter_mut().for_each(|x| *x *= 2);\n    nums.into_iter()\n        .filter(|&x| x > 10)\n        .collect()\n}"
+}
